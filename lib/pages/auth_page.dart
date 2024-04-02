@@ -1,73 +1,24 @@
+import 'package:biometric_auth/utils/biometric.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 
-class FingerprintAuth extends StatefulWidget {
-  const FingerprintAuth({Key? key}) : super(key: key);
+class BiometricAuth extends StatefulWidget {
+  const BiometricAuth({Key? key}) : super(key: key);
 
   @override
-  _FingerprintAuthState createState() => _FingerprintAuthState();
+  _BiometricAuthState createState() => _BiometricAuthState();
 }
 
-class _FingerprintAuthState extends State<FingerprintAuth> {
+class _BiometricAuthState extends State<BiometricAuth> {
   final auth = LocalAuthentication();
   String authorized = " not authorized";
-  bool _canCheckBiometric = false;
-  late List<BiometricType> _availableBiometric;
 
   Future<void> _authenticate() async {
-    bool authenticated = false;
-
-    try {
-      authenticated = await auth.authenticate(
-          localizedReason: "Scan your finger to authenticate",
-          useErrorDialogs: true,
-          stickyAuth: true);
-    } on PlatformException catch (e) {
-      print(e);
-    }
-
-    setState(() {
-      authorized =
-          authenticated ? "Authorized success" : "Failed to authenticate";
-      print(authorized);
-    });
-  }
-
-  Future<void> _checkBiometric() async {
-    bool canCheckBiometric = false;
-
-    try {
-      canCheckBiometric = await auth.canCheckBiometrics;
-    } on PlatformException catch (e) {
-      print("_checkBiometric error - $e");
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _canCheckBiometric = canCheckBiometric;
-    });
-  }
-
-  Future _getAvailableBiometric() async {
-    List<BiometricType> availableBiometric = [];
-
-    try {
-      availableBiometric = await auth.getAvailableBiometrics();
-    } on PlatformException catch (e) {
-      print("_getAvailableBiometric - $e");
-    }
-
-    setState(() {
-      _availableBiometric = availableBiometric;
-    });
+    await BiometricManager.shared.checkBiometric();
   }
 
   @override
   void initState() {
-    _checkBiometric();
-    _getAvailableBiometric();
     super.initState();
   }
 
@@ -85,13 +36,13 @@ class _FingerprintAuthState extends State<FingerprintAuth> {
                 "Login",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 48.0,
+                  fontSize: 26.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 50.0),
+              margin: const EdgeInsets.symmetric(vertical: 20.0),
               child: Column(
                 children: [
                   Container(
@@ -106,6 +57,7 @@ class _FingerprintAuthState extends State<FingerprintAuth> {
                     margin: const EdgeInsets.symmetric(vertical: 15.0),
                     width: double.infinity,
                     child: FloatingActionButton(
+                      backgroundColor: Colors.pink,
                       onPressed: _authenticate,
                       elevation: 0.0,
                       shape: RoundedRectangleBorder(

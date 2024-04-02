@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'finger_print_auth.dart';
+import 'package:get/get.dart';
+import 'pages/auth_page.dart';
 
-void main()=> runApp(MyApp());
+void main()=> runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Fingerprint Auth",
-      home: FingerprintAuth(),
+      home: BiometricAuth(),
     );
   }
 }

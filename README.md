@@ -1,16 +1,11 @@
 # biometric_auth
 
-A new Flutter project.
+## Biometric Authentication
+Biometric authentication is a type of multi-factor authentication (MFA) that uses data derived from a device user’s biological traits, such as facial characteristics, voice recognition, and fingerprints, to facilitate access and better secure personal information and sensitive assets.
 
-## Getting Started
+### Advantage
+- Verification of the user is fully conducted locally on a physical device, removing the possibility of sensitive information being transmitted and potentially exposed via third-party servers.
+- Aside from effectively verifying users’ identities, it also serves as an additional layer of security over traditional sign-in methods like password credentials.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Plugin used
+- [local_auth](https://pub.dev/packages/local_auth) 
