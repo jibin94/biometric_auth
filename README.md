@@ -1,5 +1,3 @@
-# biometric_auth
-
 ## Biometric Authentication
 Biometric authentication is a type of multi-factor authentication (MFA) that uses data derived from a device user’s biological traits, such as facial characteristics, voice recognition, and fingerprints, to facilitate access and better secure personal information and sensitive assets.
 
